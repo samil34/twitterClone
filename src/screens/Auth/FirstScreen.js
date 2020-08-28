@@ -7,11 +7,13 @@ import auth from '@react-native-firebase/auth';
 import { connect } from 'react-redux';
 import { isUser } from '../../actions'
 import * as RootNavigation from '../../RootNavigation';
-// import { colors } from '../../style';
+ import { colors } from '../../style';
 
 
 const FirstScreen = (props) => {
-    
+    useEffect(() => {
+
+    }, [])
     return(
         <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '' }}>
 

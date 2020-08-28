@@ -13,5 +13,8 @@ export function navigate(name, params) {
 export function replace(...args) {
   navigationRef.current?.dispatch(StackActions.replace(...args));
   }
-
+  
+  export function pop() {
+    navigationRef.current?.dispatch(StackActions.pop());
+  }
 // add other navigation functions that you need and export them

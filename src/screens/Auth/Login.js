@@ -66,6 +66,7 @@ const Login = (props) => {
 
                     <Input
                         placeholder={'Telefoni e-posta veya kullanıcı adı'}
+                        showRightIcon
                         value={email}
                         onChangeText={(email) => setEmail(email)}
                     />
@@ -73,6 +74,7 @@ const Login = (props) => {
                     <Input
                         placeholder={'Şifre'}
                         secureTextEntry
+                        showRightIcon={false}
                         value={password}
                         onChangeText={(password) => setPassword(password)}
                     />
@@ -107,7 +109,7 @@ const Login = (props) => {
 
                 <Button
                     text={'Giriş yap'}
-                    loading={props.loading}
+                    
                     onPress={() => {
                         const params = { email, password }
                         props.login(params)

@@ -8,7 +8,8 @@ import FirstScreen from './screens/Auth/FirstScreen';
 import Home from './screens/Home/Home';
 import { navigationRef } from './RootNavigation';
 
-
+import { LOCAL_AUTH_ID, USER } from './actions/types';
+import AsyncStorage from '@react-native-community/async-storage';
 const Stack = createStackNavigator();
 
 function Router(props) {
@@ -20,7 +21,7 @@ function Router(props) {
                 name="FirstScreen" 
                 component={FirstScreen}
                 options={({ navigation, route }) => ({ 
-                    title: 'Login',
+                    title: 'FirstScreen',
                     headerShown: false
                     
                 })}

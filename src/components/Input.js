@@ -13,8 +13,7 @@ const Input = (props) => (
         onChangeText={(value) => props.onChangeText(value)}
         style={[{
             padding: 5,
-
-            height: 60,
+            height: '60%',
             color: '#424242',
             borderBottomColor: '#b7b7b7',
             borderBottomWidth: 1

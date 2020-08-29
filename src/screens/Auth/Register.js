@@ -145,7 +145,7 @@ const Register = (props) => {
 }
 
 const styles = {
-   input: {  height: 53, }
+   input: {  height: '40%', }
 }
 
 const mapStateToProps = ({ authResponse }) => {

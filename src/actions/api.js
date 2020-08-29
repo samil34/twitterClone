@@ -1,51 +1,66 @@
 
 // import axios from 'axios'
-// import {Alert } from 'react-native'
+// import  { Alert } from 'react-native'
+
 // import * as RootNavigation from '../RootNavigation';
 
-// export const post = (url, params, dispatch,start, success, faild) => {
-//     console.log('giden url: =>', url);
+// import AsyncStorage from '@react-native-community/async-storage'
+
+// import { USER, LOCAL_AUTH_ID } from './types'
+
+
+// export const post = (url, params, dispatch, start, success, faild) => {
+//     console.log('Giden URL => ', url);
+
+//     const method = url.split('/').pop();
+//     console.log('Method => ', method);
 
 //     dispatch({  type: start })
-
 //     axios({
 //         method: 'post',
-//         url,//veritabanımızın adresi
-//         data: params
-//     }).then((response) =>{
-//         console.log('Gelen post Başarılı: =>', response.data); //api isteğinin başarılı olması demek
-//         dispatch({  type: success, payload: response.data }) //galiba diğer sayfaya girmeye yarıyor.ve giriş başaılı olursa login success
-    
-//         RootNavigation.replace('Home')//useEffet yerine bunu yapıyoruz
+//         url,
+//         data: params,
+//         headers: {
+//           authorization: 'Bearer '.concat(USER.token)
+//       }
+//       }).then((response) => {
+//         console.log('Gelen POST Başarılı: => ', response.data );
+//         dispatch({  type: success, payload: method == 'removeCharacter' ?  params.id : response.data  })
 
-//     }).catch((err) => {                                            //geriye data döner
-//        console.log('Gelen post Hatalı: =>', err);
-//        Alert.alert('UYARI', 'İstek sırasında bir sorun oluştu')
-//        dispatch({  type: faild }) //galiba diğer sayfaya girmeye yarıyor.ve giriş başaılı olursa login success
+//         if(method == 'login' || method == 'register'){
+//           RootNavigation.replace('Home')
+//           USER.token = response.data.token
+//           AsyncStorage.setItem(LOCAL_AUTH_ID, response.data.token)
+//         } else if(method == 'addCharacter'){
+//           RootNavigation.pop()
+//         }
 
-//     })
+//       }).catch((err) => {
+//         console.log('Gelen POST Hatalı: => ', err.response.data );
+//         Alert.alert('UYARI', err.response.data.message)
+//         dispatch({  type: faild  })
+//       })
 // }
 
-// export const get = (url, params, dispatch,start, success, faild) => {
-//     console.log('giden url: =>', url);
+// export const get = (url, params, dispatch, start, success, faild) => {
+//     console.log('Giden URL => ', url);
+//     const method = url.split('/').pop();
+//     console.log('Method => ', method);
+
 //     dispatch({  type: start })
 
 //     axios({
 //         method: 'get',
-//         url,//veritabanımızın adresi
-        
+//         url,
 //         headers: {
-//             Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMzZmNjVkZWU1YTc3M2EyNzc0NzI3MyIsImlhdCI6MTU5ODM3MjQ5OCwiZXhwIjoxNTk4NTQ1Mjk4fQ.EKWtProeeQ0P9OG56uGv2xGjkKf5CdMtn0SH-mtejus'
+//             authorization: 'Bearer '.concat(USER.token)
 //         }
-//     }).then((response) =>{
-//         console.log('Gelen get Başarılı: =>', response.data); //api isteğinin başarılı olması demek
-//         dispatch({  type: success, payload: response.data }) //galiba diğer sayfaya girmeye yarıyor.ve giriş başaılı olursa login success
-    
-       
-//     }).catch((err) => {                                            //geriye data döner
-//        console.log('Gelen get Hatalı: =>', err);
-//        Alert.alert('UYARI', 'İstek sırasında bir sorun oluştu')
-//        dispatch({  type: faild }) //galiba diğer sayfaya girmeye yarıyor.ve giriş başaılı olursa login success
-
-//     })
+//       }).then((response) => {
+//         console.log('Gelen GET Başarılı: => ', response.data );
+//         dispatch({  type: success, payload: response.data  })
+//       }).catch((err) => {
+//         console.log('Gelen GET Hatalı: => ', err );
+//         Alert.alert('UYARI', 'İstek sırasında bir sorun oluştu!')
+//         dispatch({  type: faild  })
+//       })
 // }
